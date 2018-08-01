@@ -16,7 +16,7 @@
 # Source the prompt <<1
 #-------------------------------------------------------------------------------
 if [[ ! -n "$ZSHRUN" ]]; then
-    source $HOME/.zsh_prompt
+     source $HOME/.zsh_prompt
 fi
 # Precmd functions local array variable <<2
 #-------------------------------------------------------------------------------
@@ -140,7 +140,7 @@ export KEYTIMEOUT=1
 #-------------------------------------------------------------------------------
 # Set vi-mode and create a few additional Vim-like mappings
 #-------------------------------------------------------------------------------
-bindkey -v
+# bindkey -v
 bindkey '^R' history-incremental-search-backward
 bindkey '^R' history-incremental-pattern-search-backward
 bindkey '^?' backward-delete-char
@@ -154,30 +154,30 @@ if [ "$(uname)" = "Darwin" ]; then
 else
     alias ls='ls -F --color'
 fi
-alias tmux="tmux -2"  # Fix tmux making vim colors funky
+# alias tmux="tmux -2"  # Fix tmux making vim colors funky
 alias tmuxh='tmux attach -t host-session || tmux new-session -s host-session'
 alias tmuxp='tmux attach -t pair-session || tmux new-session -t host-session -s pair-session'
+
+# Git although for most things, use .gitconfig
+alias glg='git log --stat --decorate --graph'
+
+# Java
+alias javahome='/usr/libexec/java_home'
+alias jshell='/Library/Java/JavaVirtualMachines/jdk-10.jdk/Contents/Home/bin/jshell'
+
+# Maven
+alias mvnrp='mvn package spring-boot:repackage'
+
+# NW
+alias findrpm="find ~/projects -name *.rpm"
+
+# Mac
+alias tailsys='tail -f /var/log/system.log'
+
 # >>1
 
 # Functions <<1
 #===============================================================================
-# Workon virtualenv <<2
-#--------------------------------------------------------------------
-# If we cd into a directory that is named the same as a virtualenv
-# auto activate that virtualenv
-# -------------------------------------------------------------------
-[[ -a /usr/local/share/python/virtualenvwrapper.sh ]] && source /usr/local/share/python/virtualenvwrapper.sh
-[[ -a /usr/local/bin/virtualenvwrapper.sh ]] && source /usr/local/bin/virtualenvwrapper.sh
-
-workon_virtualenv() {
-  if [[ -d .git ]]; then
-     VENV_CUR_DIR="${PWD##*/}"
-     if [[ -a ~/.virtualenvs/$VENV_CUR_DIR ]]; then
-       deactivate > /dev/null 2>&1
-       source ~/.virtualenvs/$VENV_CUR_DIR/bin/activate
-     fi
-  fi
-}
 # >>2
 # Workon node env <<2
 #--------------------------------------------------------------------
@@ -198,15 +198,7 @@ workon_node_env() {
     }
   fi
 }
-# >>2
-# Run the virtual environments functions for the prompt on each cd <<2
-# -------------------------------------------------------------------
-cd() {
-  builtin cd "$@"
-  unset NODE_NAME
-  workon_virtualenv
-  workon_node_env
-}
+
 # >>2
 # >>1
 
@@ -221,8 +213,23 @@ source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # >>1
 
 # Export Go Path <<1
-export GOPATH=~/Projects/go
+export GOPATH=~/go
 export PATH=$PATH:$GOPATH/bin
 # >>1
 
+# Export Java Path <<1
+
+# Use java 8 if you want 9 can run this with 1.9
+export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
+export SANDBOX_HOST=localhost
+# >>1
+
+# Export Local Apps Path <<1
+export LOCALAPPS=~/apps
+export PATH=$PATH:$LOCALAPPS/bin
+# >>1
+
 # EOF
+
+export NVM_DIR="/Users/hanakr/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
