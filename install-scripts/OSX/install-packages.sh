@@ -19,11 +19,8 @@ if [[ $answer != "n" ]] && [[ $answer != "N" ]] ; then
     brew install vim --with-lua
     brew install tig
     brew install aspell
-    brew install node
-    brew install reattach-to-user-namespace
     brew install tmux
     brew install the_silver_searcher
-    brew install planck
     brew install zsh-syntax-highlighting
 
     # ===
@@ -31,22 +28,6 @@ if [[ $answer != "n" ]] && [[ $answer != "N" ]] ; then
     # Brew install and do away with the busted default version of ctags
     # ===
     brew install ctags
-    sudo mv /usr/bin/ctags /usr/bin/ctags_orig
-
-    # ===
-    # Install pip and global pip packages
-    # ===
-    sudo easy_install pip
-    sudo pip install virtualenvwrapper
-    sudo pip install jedi
-    sudo pip install flake8
-fi
-
-echo -n "Install haskell related tools? (y/N) => "; read haskell
-if [[ $haskell = "y" ]] || [[ $haskell = "Y" ]] ; then
-    brew install haskell-stack
-    stack setup
-    stack install hlint ghc-mod hdevtools
 fi
 
 echo -n "Install GO related tools? (y/N) => "; read go

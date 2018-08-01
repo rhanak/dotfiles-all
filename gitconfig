@@ -10,7 +10,29 @@
     deleted = red
     untracked = yellow
 [user]
-    name = JarrodCTaylor
-    email = jarrod.c.taylor@gmail.com
+    name = Hanak Jr
+    email = randal.hanakjr@rsa.com
 [push]
     default = matching
+[alias]
+    # Get the current branch name (not so useful in itself, but used in
+    # other aliases)
+    branch-name = "!git rev-parse --abbrev-ref HEAD"
+    # Push the current branch to the remote "origin", and set it to track
+    # the upstream branch
+    publish = "!git push -u origin $(git branch-name)"
+    
+    # Grab all the changes from upstream
+    fu = "!git fetch upstream"
+    # Rebase your branch against those changes
+    ru = "!git rebase upstream/master"
+    
+    # Create a patch supplying a range of commits
+    fp = "format-patch"
+    # Apply it
+    ap = "apply"
+
+    # Check diff on stuff added to changes to be committed
+    dc="diff --cached"
+[core]
+	autocrlf = true
