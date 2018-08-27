@@ -15,9 +15,7 @@
 
 # Source the prompt <<1
 #-------------------------------------------------------------------------------
-if [[ ! -n "$ZSHRUN" ]]; then
-     source $HOME/.zsh_prompt
-fi
+source $HOME/.zsh_prompt
 # Precmd functions local array variable <<2
 #-------------------------------------------------------------------------------
 local -a precmd_functions
@@ -107,7 +105,7 @@ export LC_COLLATE=C
 # >>2
 # Set grepoptions <<2
 #-------------------------------------------------------------------------------
-export GREP_OPTIONS='--color=auto'
+# export GREP_OPTIONS='--color=auto'
 # >>2
 # Use the correct ctags <<2
 #-------------------------------------------------------------------------------
@@ -209,7 +207,7 @@ done
 # >>1
 
 # Source Syntaxhighlighting <<1
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # >>1
 
 # Export Go Path <<1
@@ -220,7 +218,7 @@ export PATH=$PATH:$GOPATH/bin
 # Export Java Path <<1
 
 # Use java 8 if you want 9 can run this with 1.9
-export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
+# export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
 export SANDBOX_HOST=localhost
 # >>1
 
